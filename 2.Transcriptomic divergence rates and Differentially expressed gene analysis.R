@@ -46,7 +46,7 @@ Coding_Gene_List <- Coding_Gene_List$V1
 Tissue_ID <- c("Bra", "Hea", "Kid", "Liv", "Tes", "Mam", "Vas", "Epi")
 for (i in 1:length(Tissue_ID)) {
   Target_Tissue <- Tissue_ID[i]
-  Tissue_Count <- read.table(paste0("Coding_Tissue_Male_count/", Target_Tissue, "_FeatureCounts_Fragment.count", sep = ""), sep = "\t", header = TRUE)
+  Tissue_Count <- read.table(paste0("Coding_Tissue_Female_count/", Target_Tissue, "_FeatureCounts_Fragment.count", sep = ""), sep = "\t", header = TRUE)
   # rownames(Tissue_Count) <- Tissue_Count$Geneid
   rownames(Tissue_Count) <- Tissue_Count[, 1]  
   Tissue_Count <- Tissue_Count[, 7:ncol(Tissue_Count)]
