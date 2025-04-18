@@ -2,8 +2,8 @@
 
 library(readr)
 setwd('D:/R/New_House_mouse_Transcriptome/Spearman_correlations_8_Tissues/Protein_coding')
-data <- read_delim('All_Female_8_tissues_FPKM_means.txt', delim = "\t")
-prefixes <- c("Bra", "Hea", "Kid", "Liv", "Ova", 'Mam','Ute', 'Ovi')
+data <- read_delim('All_Male_8_tissues_FPKM_means.txt', delim = "\t")
+prefixes <- c("Bra", "Hea", "Kid", "Liv", "Tes", 'Mam','Epi', 'Vas')
 results <- data.frame(Comparison = character(), Spearman_Correlation = numeric(), stringsAsFactors = FALSE)
 for (prefix in prefixes) {
   dom_mean <- data[[paste0(prefix, "_DOM_mean")]]
@@ -19,7 +19,7 @@ for (prefix in prefixes) {
                    data.frame(Comparison = paste0(prefix, "_DOM_MUS_mean vs ", prefix, "_SPR_mean"), 
                               Spearman_Correlation = spearman_dm_spr))
 }
-output_file_path <- 'Female_spearman_correlations_8_Tissues.txt'
+output_file_path <- 'Male_spearman_correlations_8_Tissues.txt'
 write.table(results, file = output_file_path, sep = "\t", row.names = FALSE, quote = FALSE)
 cat("Results saved to", output_file_path, "\n")
 
@@ -46,7 +46,7 @@ Coding_Gene_List <- Coding_Gene_List$V1
 Tissue_ID <- c("Bra", "Hea", "Kid", "Liv", "Tes", "Mam", "Vas", "Epi")
 for (i in 1:length(Tissue_ID)) {
   Target_Tissue <- Tissue_ID[i]
-  Tissue_Count <- read.table(paste0("Coding_Tissue_Female_count/", Target_Tissue, "_FeatureCounts_Fragment.count", sep = ""), sep = "\t", header = TRUE)
+  Tissue_Count <- read.table(paste0("Coding_Tissue_Male_count/", Target_Tissue, "_FeatureCounts_Fragment.count", sep = ""), sep = "\t", header = TRUE)
   # rownames(Tissue_Count) <- Tissue_Count$Geneid
   rownames(Tissue_Count) <- Tissue_Count[, 1]  
   Tissue_Count <- Tissue_Count[, 7:ncol(Tissue_Count)]
